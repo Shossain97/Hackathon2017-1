@@ -68,6 +68,7 @@ public class Variable extends BaseComponent
 		inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
 		inputPanel.add(namingPanel);
 		inputPanel.add(assigningPanel);
+		inputPanel.add(Button);
 		frame=new JFrame(name);
 		frame.setContentPane(inputPanel);
 		frame.setSize(400,150);

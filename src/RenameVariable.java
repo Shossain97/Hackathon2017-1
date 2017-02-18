@@ -20,6 +20,7 @@ public class RenameVariable extends BaseComponent
 		for(int i=0;i<List.size();i++)
 		{
 			varsList.add(List.get(i));
+			System.out.println(varsList.get(i));
 		}
 		//varsList.addAll(List,0);
 		inputText=new JTextField(5);
@@ -29,13 +30,17 @@ public class RenameVariable extends BaseComponent
 		variableNameLabel.setForeground(borderColor);
 		variableNameLabel.setBackground(Color.BLACK);
 		variableNameText=new JTextField(5);
+		inputLabel=new JLabel();
+		inputLabel.setText("Input the value you would like to set to: ");
+		inputLabel.setForeground(borderColor);
 		Button.addActionListener(submitListener());
-		variableNameLabel.setText("Input the variables name you want to assign: ");
 		inputPanel.add(variableNameLabel);
 		inputPanel.add(variableNameText);
 		inputPanel.add(inputLabel);
 		inputPanel.add(inputText);
 		inputPanel.add(Button);
+		inputPanel.setBackground(Color.BLACK);
+		inputPanel.setBorder(compBorder);
 		name = "Rename Variable";
 		frame=new JFrame(name);
 		frame.setContentPane(inputPanel);
