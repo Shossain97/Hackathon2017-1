@@ -70,7 +70,6 @@ public class Variable extends BaseComponent
 		inputPanel.add(assigningPanel);
 		frame=new JFrame(name);
 		frame.setContentPane(inputPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400,150);
 		run();
 		

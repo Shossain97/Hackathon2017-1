@@ -120,7 +120,6 @@ public class IfStatement extends BaseComponent
 		Button.addActionListener(submitListener());
 		frame=new JFrame(name);
 		frame.setContentPane(inputPanel);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800,300);
 		runIfStatement();
 

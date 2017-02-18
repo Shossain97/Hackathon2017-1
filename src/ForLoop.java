@@ -33,7 +33,6 @@ public class ForLoop extends BaseComponent
 		inputPanel.setBackground(Color.BLACK);
 		inputLabel.setForeground(borderColor);
 		Button.addActionListener(submitListener());
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		inputPanel.add(inputLabel);
 		inputPanel.add(inputText);
 		inputPanel.add(label2);
