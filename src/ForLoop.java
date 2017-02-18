@@ -12,12 +12,14 @@ public class ForLoop extends BaseComponent
 	private String endVarString;
 	private String increaseDecrease;
 	private String comparisonOperatorString;
-	private String userInput;
-	private String userInput2;
+	
 	private JTextField textBox2;
 	private JLabel label2;
 	public ForLoop()
 	{
+		this.setBorder(compBorder);
+		this.setBackground(Color.BLACK);
+		this.setForeground(borderColor);
 		name="For Loop";
 		this.setText(name);
 		baseText="for(var i=";
@@ -35,6 +37,7 @@ public class ForLoop extends BaseComponent
 		inputPanel.add(inputLabel);
 		inputPanel.add(inputText);
 		inputPanel.add(label2);
+		inputPanel.add(textBox2);
 		inputPanel.add(Button);
 		inputPanel.setBorder(compBorder);
 		frame.getContentPane().add(inputPanel);
@@ -42,54 +45,25 @@ public class ForLoop extends BaseComponent
 		
 		
 	}
-	private void setStartVar()
+	private void setStartVar(String userInput)
 	{
 			
-			inputLabel.setForeground(borderColor);
-			inputLabel.setText("Input an initial integer to start from");
-			frame.setVisible(true);
-			
-
-			try
-			{
-				userInput=startVarString;
+				startVarString=userInput;
 				startVar=Integer.parseInt(startVarString);
-				frame.setVisible(false);
-				System.out.println("End of first try in setSTartVAR");
-			}
-			catch(Exception e)
-			{
-				inputLabel.setText("Invalid not Input");
-				System.out.println("End of first catch in setSTartVAR");
-				//setStartVar();
-			}
-			
-		
+
 	}
-	private void setEndVar()
+	private void setEndVar(String userInput2)
 	{
-		inputLabel.setForeground(borderColor);
-		inputLabel.setText("Input an initial integer to end at");
-		frame.setVisible(true);
-		try
-		{
-			userInput=endVarString;
-			startVar=Integer.parseInt(endVarString);
-			frame.setVisible(false);
-			System.out.println("End of try in setEndVar");
-		}
-		catch(Exception e)
-		{
-			inputLabel.setText("Invalid input");
-			System.out.println("End of catch in setEndVar");
-			//setEndVar();
-		}
+
+			endVarString=userInput2;
+			endVar=Integer.parseInt(endVarString);
+			//System.out.println(endVar);
+
 	}
 	public void setOuterText()
 	{
-		System.out.println("in set outer text");
-		setStartVar();
-		setEndVar();
+		
+	
 		if(startVar>endVar)
 		{
 			increaseDecrease="--";
@@ -100,6 +74,8 @@ public class ForLoop extends BaseComponent
 			increaseDecrease="++";
 			comparisonOperatorString="<";
 		}
+		//System.out.println(startVar);
+		//System.out.println(endVar);
 		String beginning=baseText+startVarString+";i";
 		String middle=startVar+comparisonOperatorString+endVarString+";i";
 		OuterText=beginning+middle+increaseDecrease+"){";
@@ -111,12 +87,39 @@ public class ForLoop extends BaseComponent
 		{
 			public void actionPerformed(ActionEvent event)
 			{
-
-				userInput=inputText.getText();
-				setStartVar();
+				try
+				{
+					//userInput=inputText.getText();
+					//System.out.println(userInput);
+					//userInput2=textBox2.getText();
+					//System.out.println(userInput2);
+					setStartVar(inputText.getText());
+					setEndVar(textBox2.getText());
+					setOuterText();
+					frame.setVisible(false);
+					
+				}
+				catch(Exception e)
+				{
+					inputLabel.setText("Invalid input");
+					label2.setText("Invalid input");
+				}
+			
 				
 			}
 		};
 		return submitListen;
+	}
+	public void runForLoop()
+	{
+		inputLabel.setForeground(borderColor);
+		inputLabel.setText("Input an initial integer to start from");
+		label2.setForeground(borderColor);
+		label2.setText("Input an initial integer to end at");
+		frame.setVisible(true);
+	}
+	public void setInnerText(String text)
+	{
+		InnerText=text+"}";
 	}
 }
