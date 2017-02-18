@@ -28,7 +28,7 @@ public class DragPanels
 	JPanel logicPanel;
 	JLabel programLabel;
 	JList<String> destination = new JList<String>(new DefaultListModel<>());
-	String dragPrompt = "Drag Components Here";
+	String dragPrompt = "v--- Drag Components Here ---v";
 	
 	public DragPanels(JFrame window)
 	{
@@ -51,6 +51,7 @@ public class DragPanels
 				mainWindow.getHeight() - 10));
 		logicPanel.setBackground(Color.BLACK);
 		logicPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		logicPanel.setAlignmentY(Component.TOP_ALIGNMENT);
 		
 		// Populate components panel.
 		componentsLabel = new JLabel("Componenets");
@@ -77,7 +78,7 @@ public class DragPanels
 		components.setTransferHandler(componentsHandler);
 		
 		// Populate logic panel.
-		programLabel = new JLabel("Program");
+		programLabel = new JLabel(" Program");
 		programLabel.setFont(new Font("Courier", Font.BOLD,24));
 		programLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		programLabel.setForeground(new Color(0,255,0));
@@ -201,8 +202,8 @@ class ListTransferHandler extends TransferHandler
 		  JList<String> destination2 = new JList<String>(new DefaultListModel<>());
 		  JLabel leftBracket = new JLabel(" {");
 		  JLabel rightBracket = new JLabel(" }");
-		  String dragPrompt = "Drag Components Here";
-		  ((DefaultListModel<String>) destination2.getModel()).add(0, "Drag Components Here");
+		  String dragPrompt = "v--- Drag Components Here ---v";
+		  ((DefaultListModel<String>) destination2.getModel()).add(0, dragPrompt);
 		  
 		  destination1.setForeground(new Color(0,255,0));
 		  destination1.setBackground(Color.black);
@@ -245,7 +246,7 @@ class ListTransferHandler extends TransferHandler
 		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "Else If":
-		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    If Else Body");
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    Else If Body");
 		  		newComponents[0] = new ElseIf();
 		  		newComponents[1] = leftBracket;
 		  		newComponents[2] = destination1;
