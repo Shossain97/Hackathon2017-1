@@ -5,5 +5,6 @@ public class MainWindow
 	{
 		System.out.println("Hello fucker, mother world.");
 		System.out.println("We have anal beads");
+		System.out.println("Nooooo fuckery.");
 	}
 }
