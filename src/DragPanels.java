@@ -20,9 +20,10 @@ public class DragPanels
 	
 	JPanel componentPanel;
 	JLabel componentsLabel;
-	JLabel loopsLabel;
+	JLabel conditionalLabel;
+	JLabel varLabel;
 	JList<String> components = new JList<String>(new DefaultListModel<>());
-	String[] componentNames = { "ForLoop" };
+	String[] componentNames = { "Variable", "If", "Else If", "Else", "For Loop" };
 	
 	JPanel logicPanel;
 	JLabel programLabel;
@@ -57,11 +58,6 @@ public class DragPanels
 		componentsLabel.setHorizontalAlignment(JLabel.LEFT);
 		componentsLabel.setForeground(new Color(0,255,0));
 		
-		loopsLabel = new JLabel("Loops");
-		loopsLabel.setFont(new Font("Courier", Font.BOLD, 18));
-		loopsLabel.setHorizontalAlignment(JLabel.LEFT);
-		loopsLabel.setForeground(new Color(0,255,0));
-		
 		for(int i = 0; i < componentNames.length; i++)
 			((DefaultListModel<String>) components.getModel()).add(i, componentNames[i]);
 		
@@ -71,7 +67,6 @@ public class DragPanels
 		((DefaultListModel<String>) destination.getModel()).add(0, dragPrompt);
 		
 		componentPanel.add(componentsLabel);
-		componentPanel.add(loopsLabel);
 		componentPanel.add(components);
 		
 		components.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -218,7 +213,7 @@ class ListTransferHandler extends TransferHandler
 		  rightBracket.setForeground(new Color(0,255,0));
 		  rightBracket.setBackground(Color.BLACK);
 		  
-		  Component[] newComponents;
+		  Component[] newComponents = new Component[5];
 		  
 		  ListTransferHandler destinationHandler = new ListTransferHandler();
 		  destinationHandler.SetLogicPanel(logic);
@@ -229,24 +224,53 @@ class ListTransferHandler extends TransferHandler
 		  
 		  switch(labelType)
 		  {
-		  	case "ForLoop":
+		  	case "For Loop":
 		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    For Loop Body");
-		  		newComponents = new Component[5];
 		  		newComponents[0] = new ForLoop();
 		  		newComponents[1] = leftBracket;
 		  		newComponents[2] = destination1;
 		  		newComponents[3] = rightBracket;
 		  		newComponents[4] = destination2;
-		  		newLabel = new JLabel("ForLoop");
-		  		
-		  		//for(int i = 0; i < newComponents.length; i++)
-		  			//logic.add(newComponents[i]);
-		  		
 		  		comps = logic.getComponents();
 		  		RebuildPanel(startIndex, newComponents);
 		  		break;
+		  	case "If":
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    If Body");
+		  		newComponents[0] = new IfStatement();
+		  		newComponents[1] = leftBracket;
+		  		newComponents[2] = destination1;
+		  		newComponents[3] = rightBracket;
+		  		newComponents[4] = destination2;
+		  		comps = logic.getComponents();
+		  		RebuildPanel(startIndex, newComponents);
+		  		break;
+		  	case "Else If":
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    If Else Body");
+		  		newComponents[0] = new ElseIf();
+		  		newComponents[1] = leftBracket;
+		  		newComponents[2] = destination1;
+		  		newComponents[3] = rightBracket;
+		  		newComponents[4] = destination2;
+		  		comps = logic.getComponents();
+		  		RebuildPanel(startIndex, newComponents);
+		  		break;
+		  	case "Else":
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    Else Body");
+		  		newComponents[0] = new ElseStatement();
+		  		newComponents[1] = leftBracket;
+		  		newComponents[2] = destination1;
+		  		newComponents[3] = rightBracket;
+		  		newComponents[4] = destination2;
+		  		comps = logic.getComponents();
+		  		RebuildPanel(startIndex, newComponents);
+		  		break;
+		  	case "Variable":
+		  		newComponents = new Component[2];
+		  		newComponents[0] = new JVar();
+		  		newComponents[1] = destination2;
+		  		comps = logic.getComponents();
+		  		RebuildPanel(startIndex, newComponents);
 		  	default:
-		  		newLabel = new JLabel("Empty Label");
 		  		break;
 		  }
 		  
@@ -258,40 +282,18 @@ class ListTransferHandler extends TransferHandler
 	  {
 		  Component[] newComponents = new Component[comps.length + addedComponents.length];
 		  
-		  System.out.println(startIndex);
-		  
 		  int currentIndex = 0;
 		  
 		  for(currentIndex = 0; currentIndex < startIndex; currentIndex++)
-		  {
 			  newComponents[currentIndex] = comps[currentIndex];
-			  System.out.println("Added: " + comps[currentIndex].toString() + " at index " + currentIndex);
-		  }
 		  
 		  for(int i = 0; i < addedComponents.length; i++, currentIndex++)
-		  {
 			  newComponents[currentIndex] = addedComponents[i];
-			  System.out.println("Added: " + addedComponents[i].toString() + " at index " + currentIndex);
-		  }
 		  
 		  for(int i = startIndex; i < comps.length; i++, currentIndex++)
-		  {
 			  newComponents[currentIndex] = comps[i];
-			  System.out.println("Added: " + comps[i].toString() + " at index " + currentIndex);
-		  }
-		  
-		  JPanel newLogic = new JPanel();
 		  
 		  for(int i = 0; i < newComponents.length; i++)
-		  {
-			  System.out.println("In loop for the " + i + "th time.");
-			  System.out.println(newComponents[i].toString());
-			  newLogic.add(newComponents[i]);
 			  logic.add(newComponents[i]);
-		  }
-		  
-		  System.out.println(newLogic.getComponents().length);
-		  
-		  
 	  }
 	}

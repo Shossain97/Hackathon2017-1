@@ -28,7 +28,7 @@ public class ElseIf extends BaseComponent
 
 	public ElseIf()
 	{
-		name="ElseIf Statement";
+		name="Else If Statement";
 		this.setText(name);
 		//String[] ComparatorList={ ">","<", "==","!=",">=","=<"};
 		dropDown=new JComboBox();
