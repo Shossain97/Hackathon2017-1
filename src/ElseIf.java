@@ -7,7 +7,7 @@ import java.awt.event.*;
 import java.lang.Object;
 
 import java.util.ArrayList;
-public class IfStatement extends BaseComponent 
+public class ElseIf extends BaseComponent 
 {
 	private String[] operatorsList;
 	private String comparisonStatement;
@@ -26,9 +26,9 @@ public class IfStatement extends BaseComponent
 	
 	
 
-	public IfStatement()
+	public ElseIf()
 	{
-		name="If Statement";
+		name="ElseIf Statement";
 		this.setText(name);
 		//String[] ComparatorList={ ">","<", "==","!=",">=","=<"};
 		dropDown=new JComboBox();
@@ -39,7 +39,7 @@ public class IfStatement extends BaseComponent
 		dropDown.addItem(">=");
 		dropDown.addItem("=<");
 		dropDown.addActionListener(comboListener());
-		baseText="if(";
+		baseText="else if(";
 		/////////////////////////////////////////////////////////////////////////////////////////
 		///
 		///Labels
@@ -122,7 +122,7 @@ public class IfStatement extends BaseComponent
 		frame.setContentPane(inputPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(800,300);
-		runIfStatement();
+		runElseIfStatement();
 
 	}
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ public class IfStatement extends BaseComponent
 		frame.setVisible(false);
 		System.out.println(OuterText);
 	}
-	public void runIfStatement()
+	public void runElseIfStatement()
 	{
 		frame.setVisible(true);
 	}

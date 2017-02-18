@@ -41,7 +41,8 @@ public class ForLoop extends BaseComponent
 		inputPanel.add(Button);
 		inputPanel.setBorder(compBorder);
 		frame.getContentPane().add(inputPanel);
-		frame.setSize(450,200);		
+		frame.setSize(450,200);
+		runForLoop();
 		
 		
 	}
