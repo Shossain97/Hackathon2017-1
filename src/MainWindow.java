@@ -18,7 +18,7 @@ public class MainWindow
 		DragPanels dragPanels = new DragPanels(frame);
 		
 		mainPanel.add(dragPanels.GetComponentPanel(), BorderLayout.WEST);
-		mainPanel.add(dragPanels.GetLogicPanel(), BorderLayout.EAST);
+		mainPanel.add(dragPanels.GetLogicPanel(), BorderLayout.CENTER);
 		
 		frame.getContentPane().add(mainPanel);
 		frame.pack();

@@ -36,7 +36,8 @@ public class DragPanels
 		// Initialize component panel.
 		componentPanel = new JPanel();
 		componentPanel.setLayout(new BoxLayout(componentPanel, BoxLayout.Y_AXIS));
-		componentPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		componentPanel.setBorder(BorderFactory.createLineBorder(new Color(0,255,0)));
+		componentPanel.setBackground(Color.BLACK);
 		componentPanel.setPreferredSize(new Dimension((mainWindow.getWidth() / 3) - 10,
 				mainWindow.getHeight() - 20));
 		componentPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -44,7 +45,7 @@ public class DragPanels
 		// Initialize logic panel.
 		logicPanel = new JPanel();
 		logicPanel.setLayout(new GridLayout(0,1));
-		logicPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		logicPanel.setBorder(BorderFactory.createLineBorder(new Color(0,255,0)));
 		logicPanel.setPreferredSize(new Dimension(((2*mainWindow.getWidth() / 3)) - 10,
 				mainWindow.getHeight() - 10));
 		logicPanel.setBackground(Color.BLACK);
@@ -54,13 +55,18 @@ public class DragPanels
 		componentsLabel = new JLabel("Componenets");
 		componentsLabel.setFont(new Font("Courier", Font.BOLD,24));
 		componentsLabel.setHorizontalAlignment(JLabel.LEFT);
+		componentsLabel.setForeground(new Color(0,255,0));
 		
 		loopsLabel = new JLabel("Loops");
 		loopsLabel.setFont(new Font("Courier", Font.BOLD, 18));
 		loopsLabel.setHorizontalAlignment(JLabel.LEFT);
+		loopsLabel.setForeground(new Color(0,255,0));
 		
 		for(int i = 0; i < componentNames.length; i++)
 			((DefaultListModel<String>) components.getModel()).add(i, componentNames[i]);
+		
+		components.setForeground(new Color(0,255,0));
+		components.setBackground(Color.BLACK);
 		
 		((DefaultListModel<String>) destination.getModel()).add(0, dragPrompt);
 		
@@ -80,6 +86,9 @@ public class DragPanels
 		programLabel.setFont(new Font("Courier", Font.BOLD,24));
 		programLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		programLabel.setForeground(new Color(0,255,0));
+		
+		destination.setForeground(new Color(0,255,0));
+		destination.setBackground(Color.black);
 		
 		logicPanel.add(programLabel);
 		logicPanel.add(destination);
@@ -179,8 +188,6 @@ class ListTransferHandler extends TransferHandler
 	    int dropIndex = dropLocation.getIndex();*/
 	    JList<String> targetList = (JList<String>) support.getComponent();
 	    int dropIndex = Arrays.asList(comps).indexOf(targetList) + 1;
-	    System.out.println(comps.length);
-	    System.out.println(dropIndex);
 	    //DefaultListModel<String> listModel = (DefaultListModel<String>) targetList
 	    //    .getModel();
 	    /*if (dropLocation.isInsert()) {
@@ -197,8 +204,19 @@ class ListTransferHandler extends TransferHandler
 		  JLabel newLabel;
 		  JList<String> destination1 = new JList<String>(new DefaultListModel<>());
 		  JList<String> destination2 = new JList<String>(new DefaultListModel<>());
+		  JLabel leftBracket = new JLabel(" {");
+		  JLabel rightBracket = new JLabel(" }");
 		  String dragPrompt = "Drag Components Here";
 		  ((DefaultListModel<String>) destination2.getModel()).add(0, "Drag Components Here");
+		  
+		  destination1.setForeground(new Color(0,255,0));
+		  destination1.setBackground(Color.black);
+		  destination2.setForeground(new Color(0,255,0));
+		  destination2.setBackground(Color.black);
+		  leftBracket.setForeground(new Color(0,255,0));
+		  leftBracket.setBackground(Color.BLACK);
+		  rightBracket.setForeground(new Color(0,255,0));
+		  rightBracket.setBackground(Color.BLACK);
 		  
 		  Component[] newComponents;
 		  
@@ -212,28 +230,27 @@ class ListTransferHandler extends TransferHandler
 		  switch(labelType)
 		  {
 		  	case "ForLoop":
-		  		((DefaultListModel<String>) destination1.getModel()).add(0, "For Loop Body");
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    For Loop Body");
 		  		newComponents = new Component[5];
 		  		newComponents[0] = new ForLoop();
-		  		newComponents[1] = new JLabel("{");
+		  		newComponents[1] = leftBracket;
 		  		newComponents[2] = destination1;
-		  		newComponents[3] = new JLabel("}");
+		  		newComponents[3] = rightBracket;
 		  		newComponents[4] = destination2;
 		  		newLabel = new JLabel("ForLoop");
 		  		
-		  		for(int i = 0; i < newComponents.length; i++)
-		  			logic.add(newComponents[i]);
+		  		//for(int i = 0; i < newComponents.length; i++)
+		  			//logic.add(newComponents[i]);
 		  		
 		  		comps = logic.getComponents();
-		  		//RebuildPanel(startIndex, newComponents);
+		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	default:
 		  		newLabel = new JLabel("Empty Label");
 		  		break;
 		  }
 		  
-		  
-		  logic.validate();
+		  logic.revalidate();
 		  logic.repaint();
 	  }
 	  
@@ -241,19 +258,40 @@ class ListTransferHandler extends TransferHandler
 	  {
 		  Component[] newComponents = new Component[comps.length + addedComponents.length];
 		  
-		  for(int i = 0; i < startIndex; i++)
-			  newComponents[i] = logic.getComponent(i);
+		  System.out.println(startIndex);
 		  
-		  for(int i = 0; i < addedComponents.length; i++)
-			  newComponents[i] = addedComponents[i];
+		  int currentIndex = 0;
 		  
-		  for(int i = addedComponents.length + startIndex; i < comps.length; i++)
-			  newComponents[i] = logic.getComponent(i);
+		  for(currentIndex = 0; currentIndex < startIndex; currentIndex++)
+		  {
+			  newComponents[currentIndex] = comps[currentIndex];
+			  System.out.println("Added: " + comps[currentIndex].toString() + " at index " + currentIndex);
+		  }
 		  
-		  System.out.println(newComponents.length);
+		  for(int i = 0; i < addedComponents.length; i++, currentIndex++)
+		  {
+			  newComponents[currentIndex] = addedComponents[i];
+			  System.out.println("Added: " + addedComponents[i].toString() + " at index " + currentIndex);
+		  }
 		  
-		  logic.removeAll();
+		  for(int i = startIndex; i < comps.length; i++, currentIndex++)
+		  {
+			  newComponents[currentIndex] = comps[i];
+			  System.out.println("Added: " + comps[i].toString() + " at index " + currentIndex);
+		  }
+		  
+		  JPanel newLogic = new JPanel();
+		  
 		  for(int i = 0; i < newComponents.length; i++)
+		  {
+			  System.out.println("In loop for the " + i + "th time.");
+			  System.out.println(newComponents[i].toString());
+			  newLogic.add(newComponents[i]);
 			  logic.add(newComponents[i]);
+		  }
+		  
+		  System.out.println(newLogic.getComponents().length);
+		  
+		  
 	  }
 	}
