@@ -108,6 +108,7 @@ public class ForLoop extends BaseComponent
 				
 			}
 		};
+		this.setText("OuterText");
 		return submitListen;
 	}
 	public void runForLoop()

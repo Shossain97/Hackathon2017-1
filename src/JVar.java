@@ -4,7 +4,7 @@ import javax.swing.border.Border;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-public class Variable extends BaseComponent
+public class JVar extends BaseComponent
 {
 	private JTextField assignText;
 	private JLabel assignLabel;
@@ -13,7 +13,7 @@ public class Variable extends BaseComponent
 	private JPanel assigningPanel;
 	//private String assignedName;
 	private String assignedValue;
-	public Variable()
+	public JVar()
 	{
 		name="Declare Variable";
 		this.setText(name);
@@ -79,6 +79,7 @@ public class Variable extends BaseComponent
 	{
 		OuterText=baseText+varName+"="+assignedValue+";";
 		frame.setVisible(false);
+		this.setText("Var "+varName+"="+assignedValue+";");
 	}
 	public String getVarName()
 	{
