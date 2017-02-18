@@ -47,6 +47,7 @@ public class DragPanels
 		logicPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		logicPanel.setPreferredSize(new Dimension(((2*mainWindow.getWidth() / 3)) - 10,
 				mainWindow.getHeight() - 10));
+		logicPanel.setBackground(Color.BLACK);
 		logicPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		
 		// Populate components panel.
@@ -78,6 +79,7 @@ public class DragPanels
 		programLabel = new JLabel("Program");
 		programLabel.setFont(new Font("Courier", Font.BOLD,24));
 		programLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		programLabel.setForeground(new Color(0,255,0));
 		
 		logicPanel.add(programLabel);
 		logicPanel.add(destination);
@@ -212,7 +214,7 @@ class ListTransferHandler extends TransferHandler
 		  	case "ForLoop":
 		  		((DefaultListModel<String>) destination1.getModel()).add(0, "For Loop Body");
 		  		newComponents = new Component[5];
-		  		newComponents[0] = new JLabel("ForLoop");
+		  		newComponents[0] = new ForLoop();
 		  		newComponents[1] = new JLabel("{");
 		  		newComponents[2] = destination1;
 		  		newComponents[3] = new JLabel("}");
