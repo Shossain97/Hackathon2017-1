@@ -37,7 +37,7 @@ public class ElseIf extends BaseComponent
 		dropDown.addItem("==");
 		dropDown.addItem("!=");
 		dropDown.addItem(">=");
-		dropDown.addItem("=<");
+		dropDown.addItem("<=");
 		dropDown.addActionListener(comboListener());
 		baseText="else if(";
 		/////////////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +169,7 @@ public class ElseIf extends BaseComponent
 	public void setOuterText()
 	{
 		OuterText=baseText+comparisonStatement+"){";
+		this.setText(" else if("+comparisonStatement+")");
 		frame.setVisible(false);
 		System.out.println(OuterText);
 	}

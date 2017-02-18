@@ -28,7 +28,7 @@ public class IfStatement extends BaseComponent
 
 	public IfStatement()
 	{
-		name="If Statement";
+		name=" If Statement";
 		this.setText(name);
 		//String[] ComparatorList={ ">","<", "==","!=",">=","=<"};
 		dropDown=new JComboBox();
@@ -37,7 +37,7 @@ public class IfStatement extends BaseComponent
 		dropDown.addItem("==");
 		dropDown.addItem("!=");
 		dropDown.addItem(">=");
-		dropDown.addItem("=<");
+		dropDown.addItem("<=");
 		dropDown.addActionListener(comboListener());
 		baseText="if(";
 		/////////////////////////////////////////////////////////////////////////////////////////
@@ -170,6 +170,7 @@ public class IfStatement extends BaseComponent
 	{
 		OuterText=baseText+comparisonStatement+"){";
 		frame.setVisible(false);
+		this.setText(" "+baseText+comparisonStatement+")");
 		System.out.println(OuterText);
 	}
 	public void runIfStatement()

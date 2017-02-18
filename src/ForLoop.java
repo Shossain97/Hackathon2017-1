@@ -21,7 +21,7 @@ public class ForLoop extends BaseComponent
 		this.setBackground(Color.BLACK);
 		this.setForeground(borderColor);
 		name="For Loop";
-		this.setText(name);
+		this.setText(" "+name);
 		baseText="for(var i=";
 		frame=new JFrame(name);
 		label2=new JLabel();
@@ -79,6 +79,7 @@ public class ForLoop extends BaseComponent
 		String beginning=baseText+startVarString+";i";
 		String middle=startVar+comparisonOperatorString+endVarString+";i";
 		OuterText=beginning+middle+increaseDecrease+"){";
+		this.setText(baseText+startVarString+";i"+comparisonOperatorString+endVarString+";i"+increaseDecrease+")");
 	}
 
 	private ActionListener submitListener()
@@ -108,7 +109,6 @@ public class ForLoop extends BaseComponent
 				
 			}
 		};
-		this.setText("OuterText");
 		return submitListen;
 	}
 	public void runForLoop()

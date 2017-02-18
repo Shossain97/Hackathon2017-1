@@ -5,7 +5,7 @@ public class ElseStatement extends BaseComponent
 {
 	public ElseStatement()
 	{
-		name="Else Statement";
+		name=" Else Statement";
 		this.setText(name);
 		baseText="Else{";
 	}
