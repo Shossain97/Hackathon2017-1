@@ -40,7 +40,7 @@ public class ForLoop extends BaseComponent
 		inputPanel.add(Button);
 		inputPanel.setBorder(compBorder);
 		frame.getContentPane().add(inputPanel);
-		frame.setSize(450,200);
+		frame.setSize(800,400);
 		runForLoop();
 		
 		
@@ -116,7 +116,7 @@ public class ForLoop extends BaseComponent
 		inputLabel.setForeground(borderColor);
 		inputLabel.setText("Input an initial integer to start from");
 		label2.setForeground(borderColor);
-		label2.setText("Input an initial integer to end at");
+		label2.setText("Input an integer to end at");
 		frame.setVisible(true);
 	}
 	public void setInnerText(String text)

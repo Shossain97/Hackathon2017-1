@@ -13,7 +13,7 @@ public class IfStatement extends BaseComponent
 	private String comparisonStatement;
 	private String firstHalfStatement;
 	private String secondHalfStatment;
-	private JComboBox dropDown;
+	private JComboBox<String> dropDown;
 	private String selectedOperator;
 	private JTextField text2;
 	private JLabel comboLabel;
@@ -32,6 +32,7 @@ public class IfStatement extends BaseComponent
 		this.setText(name);
 		//String[] ComparatorList={ ">","<", "==","!=",">=","=<"};
 		dropDown=new JComboBox();
+		dropDown.addItem("");
 		dropDown.addItem(">");
 		dropDown.addItem("<");
 		dropDown.addItem("==");
@@ -120,7 +121,7 @@ public class IfStatement extends BaseComponent
 		Button.addActionListener(submitListener());
 		frame=new JFrame(name);
 		frame.setContentPane(inputPanel);
-		frame.setSize(800,300);
+		frame.setSize(900,400);
 		runIfStatement();
 
 	}
@@ -150,7 +151,15 @@ public class IfStatement extends BaseComponent
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				selectedOperator=(String)dropDown.getSelectedItem();
+				String tempString=(String)dropDown.getSelectedItem();
+				if(tempString=="")
+				{
+					comboLabel.setText("Invalid choice try again!");
+				}
+				else
+				{
+					selectedOperator=tempString;
+				}
 			}
 		};
 		return ComboListen;
