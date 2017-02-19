@@ -226,7 +226,7 @@ class ListTransferHandler extends TransferHandler
 		  switch(labelType)
 		  {
 		  	case "For Loop":
-		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    For Loop Body");
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    v--- For Loop Body ---v");
 		  		newComponents[0] = new ForLoop();
 		  		newComponents[1] = leftBracket;
 		  		newComponents[2] = destination1;
@@ -236,7 +236,7 @@ class ListTransferHandler extends TransferHandler
 		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "If":
-		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    If Body");
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    v--- If Body ---v");
 		  		newComponents[0] = new IfStatement();
 		  		newComponents[1] = leftBracket;
 		  		newComponents[2] = destination1;
@@ -246,7 +246,7 @@ class ListTransferHandler extends TransferHandler
 		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "Else If":
-		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    Else If Body");
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    v--- Else If Body ---v");
 		  		newComponents[0] = new ElseIf();
 		  		newComponents[1] = leftBracket;
 		  		newComponents[2] = destination1;
@@ -256,7 +256,7 @@ class ListTransferHandler extends TransferHandler
 		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "Else":
-		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    Else Body");
+		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    v--- Else Body ---v");
 		  		newComponents[0] = new ElseStatement();
 		  		newComponents[1] = leftBracket;
 		  		newComponents[2] = destination1;

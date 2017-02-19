@@ -24,11 +24,16 @@ public class MainWindow
 		
 		DragPanels dragPanels = new DragPanels(frame);
 		
+		FileBuilder fb = new FileBuilder(dragPanels.GetLogicPanel());
+		
 		mainPanel.add(dragPanels.GetComponentPanel(), BorderLayout.WEST);
 		mainPanel.add(dragPanels.GetLogicPanel(), BorderLayout.CENTER);
+		mainPanel.add(fb.GetButton(), BorderLayout.EAST);
 		
 		frame.getContentPane().add(mainPanel);
 		frame.pack();
 		frame.setVisible(true);
 	}
+	
+	
 }
