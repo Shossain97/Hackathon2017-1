@@ -1,4 +1,5 @@
 //The for loop class
+import javax.swing.BoxLayout;
 import java.awt.Color;
 import javax.swing.*;
 import java.awt.Component;
@@ -12,12 +13,15 @@ public class ForLoop extends BaseComponent
 	private String endVarString;
 	private String increaseDecrease;
 	private String comparisonOperatorString;
+	private JPanel Panel1;
+	private JPanel Panel2;
+	private JPanel Panel3;
 	
 	private JTextField textBox2;
 	private JLabel label2;
 	public ForLoop()
 	{
-		this.setBorder(compBorder);
+		//this.setBorder(compBorder);
 		this.setBackground(Color.BLACK);
 		this.setForeground(borderColor);
 		name="For Loop";
@@ -26,19 +30,38 @@ public class ForLoop extends BaseComponent
 		frame=new JFrame(name);
 		label2=new JLabel();
 		inputText=new JTextField(5);
+		textBox2=new JTextField(5);
 		inputLabel=new JLabel();
 		inputPanel=new JPanel();
-		textBox2=new JTextField(5);
+		Panel1=new JPanel();
+		Panel1.setBackground(Color.BLACK);
+		Panel1.setOpaque(true);
+		//Panel1.setBorder(compBorder);
+		Panel1.add(inputLabel);
+		Panel1.add(inputText);
+		Panel2=new JPanel();
+		Panel2.setBackground(Color.BLACK);
+		Panel2.setOpaque(true);
+		//Panel2.setBorder(compBorder);
+		Panel2.add(label2);
+		Panel2.add(textBox2);
+		Panel3=new JPanel();
+		Panel3.add(Button);
+		Panel3.setBackground(Color.BLACK);
+		Panel3.setOpaque(true);
+		//Panel3.setBorder(compBorder);
 		inputPanel.setOpaque(true);
 		inputPanel.setBackground(Color.BLACK);
 		inputLabel.setForeground(borderColor);
 		Button.addActionListener(submitListener());
-		inputPanel.add(inputLabel);
-		inputPanel.add(inputText);
-		inputPanel.add(label2);
-		inputPanel.add(textBox2);
-		inputPanel.add(Button);
-		inputPanel.setBorder(compBorder);
+		//inputPanel.add(inputLabel);
+		//inputPanel.add(inputText);
+		//inputPanel.add(label2);
+		inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+		inputPanel.add(Panel1);
+		inputPanel.add(Panel2);
+		inputPanel.add(Panel3);
+		//inputPanel.setBorder(compBorder);
 		frame.getContentPane().add(inputPanel);
 		frame.setSize(800,400);
 		runForLoop();
