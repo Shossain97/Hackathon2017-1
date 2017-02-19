@@ -15,7 +15,7 @@ public class RenameVariable extends BaseComponent
 	//private String variableName;
 	private String selectedString;
 	private JLabel reassignLabel;
-	private JComboBox<String> dropDown;
+	private JComboBox dropDown;
 	private JPanel Panel1;
 	private JPanel Panel2;
 

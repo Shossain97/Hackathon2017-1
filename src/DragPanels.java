@@ -20,7 +20,8 @@ public class DragPanels
 	JPanel componentPanel; // Contains all available logic components.
 	JLabel componentsLabel; // Label for the component panel.
 	JList<String> components = new JList<String>(new DefaultListModel<>()); // List of component names.
-	String[] componentNames = { "Variable", "If", "Else If", "Else", "For Loop", "Print Value" };
+	String[] componentNames = { "Variable", "Reassign Variable", "If", "Else If",
+			"Else", "For Loop", "Print Value" };
 	
 	JPanel logicPanel; // Panel for receiving objects from the component panel.
 	JLabel programLabel; // Label denoting the start of a program.
@@ -258,6 +259,13 @@ class ListTransferHandler extends TransferHandler
 		  		newComponents = new Component[2];
 		  		newComponents[0] = new JVar();
 		  		newComponents[1] = destination2;
+		  		break;
+		  	case "Reassign Variable":
+		  		System.out.println("Reassign.");
+		  		newComponents = new Component[2];
+		  		newComponents[0] = new RenameVariable();
+		  		newComponents[1] = destination2;
+		  		System.out.println("Ending reassign.");
 		  		break;
 		  	case "Print Value":
 		  		newComponents = new Component[2];

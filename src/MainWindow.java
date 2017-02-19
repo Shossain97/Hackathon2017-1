@@ -7,10 +7,12 @@ import javax.swing.*;
 public class MainWindow 
 {	
 	// Static array for variable names used.
-	public static ArrayList<String> variables = new ArrayList<String>();
+	public static ArrayList<String> variables;
 	
 	public static void main(String[] args) 
 	{
+		variables = new ArrayList<String>();
+		
 		// Set UI defaults.
 		UIManager.put("List.font", new Font("Courier", Font.BOLD, 18));
 		UIManager.put("Button.font", new Font("Courier", Font.BOLD, 18));

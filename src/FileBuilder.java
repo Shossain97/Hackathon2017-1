@@ -107,7 +107,8 @@ public class FileBuilder
 			
 			String simpleName = comp.getClass().getSimpleName();
 			
-			if(!simpleName.equals("JVar") && !simpleName.equals("VarPrint"))
+			if(!simpleName.equals("JVar") && !simpleName.equals("VarPrint")
+					&& !simpleName.equals("RenameVariable"))
 			{
 				needClosing.add(comp);
 				currentIndex += 2;
@@ -120,8 +121,12 @@ public class FileBuilder
 				{			
 					fWriter.write(((BaseComponent)currentComponent).getOuterText() + "\n");
 					
-					if(!currentComponent.getClass().getSimpleName().equals("JVar")
-							&& !currentComponent.getClass().getSimpleName().equals("VarPrint")) needClosing.add(currentComponent);
+					simpleName = currentComponent.getClass().getSimpleName();
+					
+					if(!simpleName.equals("JVar") && !simpleName.equals("VarPrint") 
+							&& !simpleName.equals("RenameVariable")) 
+						needClosing.add(currentComponent);
+					
 					currentIndex++;
 					skip++;
 					currentComponent = trimmedComponentList.get(currentIndex);
