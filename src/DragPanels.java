@@ -261,11 +261,9 @@ class ListTransferHandler extends TransferHandler
 		  		newComponents[1] = destination2;
 		  		break;
 		  	case "Reassign Variable":
-		  		System.out.println("Reassign.");
 		  		newComponents = new Component[2];
 		  		newComponents[0] = new RenameVariable();
 		  		newComponents[1] = destination2;
-		  		System.out.println("Ending reassign.");
 		  		break;
 		  	case "Print Value":
 		  		newComponents = new Component[2];

@@ -23,9 +23,10 @@ public class RenameVariable extends BaseComponent
 	{
 		String[] tempArray=new String[MainWindow.variables.size() + 1];
 		tempArray[0] = "";
-		for(int i =1; i<MainWindow.variables.size();i++)
+		for(int i =0; i<MainWindow.variables.size();i++)
 		{
-			tempArray[i] = MainWindow.variables.get(i - 1);
+			System.out.print(MainWindow.variables.get(i));
+			tempArray[i + 1] = MainWindow.variables.get(i);
 		}
 		dropDown=new JComboBox<String>(tempArray);
 		dropDown.addActionListener(comboListener());

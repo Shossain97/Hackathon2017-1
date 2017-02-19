@@ -81,6 +81,7 @@ public class JVar extends BaseComponent
 		frame.setVisible(false);
 		this.setText("Var "+varName+"="+assignedValue+";");
 		MainWindow.variables.add(varName);
+		System.out.println(varName + " added to main variables."); 
 	}
 	public String getVarName()
 	{
