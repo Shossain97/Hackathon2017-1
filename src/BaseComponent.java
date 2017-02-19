@@ -32,7 +32,7 @@ public class BaseComponent extends JLabel
 		Button.setBorder(compBorder);
 
 		this.setForeground(borderColor);
-		this.setBorder(compBorder);
+		//this.setBorder(compBorder);
 		
 		
 	}
