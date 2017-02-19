@@ -80,8 +80,7 @@ public class FileBuilder
 			writer.write("\n}");
 			writer.close();
 			
-			java.net.URL url = getClass().getResource("index.html");
-			File htmlFile = new File(url.getPath());
+			File htmlFile = new File("index.html");
 			Desktop.getDesktop().browse(htmlFile.toURI());
 		}
 		catch(Exception exc)
