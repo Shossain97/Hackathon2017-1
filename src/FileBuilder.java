@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import javax.swing.*;
 import java.io.*;
 
+//@author Colby Hughes
+// Class FileBuilder takes the components added to the logic panel
+// and generates a JavaScript file and executes it using an HTML index.
 public class FileBuilder
 {
 	JPanel logicPanel;

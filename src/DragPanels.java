@@ -1,6 +1,4 @@
 import javax.swing.*;
-
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -9,27 +7,27 @@ import java.awt.GridLayout;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.Arrays;
 
+// @author Colby Hughes
+// Class DragPanels is responsible for managing the panel containing
+// each available component that may be added to the logic panel
+// as well as updating the logic panel when new components are added.
 public class DragPanels 
 {
-	JFrame mainWindow;
+	JFrame mainWindow; // Main frame of the application.
 	
-	JPanel componentPanel;
-	JLabel componentsLabel;
-	JLabel conditionalLabel;
-	JLabel varLabel;
-	JList<String> components = new JList<String>(new DefaultListModel<>());
+	JPanel componentPanel; // Contains all available logic components.
+	JLabel componentsLabel; // Label for the component panel.
+	JList<String> components = new JList<String>(new DefaultListModel<>()); // List of component names.
 	String[] componentNames = { "Variable", "If", "Else If", "Else", "For Loop", "Print Value" };
 	
-	JPanel logicPanel;
-	JLabel programLabel;
-	JList<String> destination = new JList<String>(new DefaultListModel<>());
+	JPanel logicPanel; // Panel for receiving objects from the component panel.
+	JLabel programLabel; // Label denoting the start of a program.
+	JList<String> destination = new JList<String>(new DefaultListModel<>()); // List capture drag events from component panel.
 	String dragPrompt = "v--- Drag Components Here ---v";
 	
+	// Constructor for the drag panels.
 	public DragPanels(JFrame window)
 	{
 		mainWindow = window;
@@ -104,17 +102,15 @@ public class DragPanels
 	{
 		return logicPanel;
 	}
-	public void SetLogicPanel(JPanel newLogic)
-	{
-		logicPanel = newLogic;
-	}
 }
 
+// ListTransferHandler has been modified from the code provided at
+// this link. http://www.java2s.com/Tutorials/Java/Java_Swing/1550__Java_Swing_Drag_Drop.htm
 class ListTransferHandler extends TransferHandler 
 {
-	JFrame mainWindow;
-	JPanel logic;
-	Component[] comps;
+	JFrame mainWindow; // Main frame for the project.
+	JPanel logic; // Panel for the logic components.
+	Component[] comps; // Components within the logic panel.
 	
 	public void SetLogicPanel(JPanel logicPanel)
 	{
@@ -195,9 +191,10 @@ class ListTransferHandler extends TransferHandler
 	    return true;
 	  }
 	  
+	  // MakeNewLabel creates an array of components to add to the
+	  // logic panel based on the component dragged in from the components panel.
 	  void MakeNewLabel(String labelType, int startIndex)
 	  {
-		  JLabel newLabel;
 		  JList<String> destination1 = new JList<String>(new DefaultListModel<>());
 		  JList<String> destination2 = new JList<String>(new DefaultListModel<>());
 		  JLabel leftBracket = new JLabel(" {");
@@ -276,21 +273,27 @@ class ListTransferHandler extends TransferHandler
 		  logic.repaint();
 	  }
 	  
+	  // Rebuild panel rearranges the components of the logic panel after
+	  // new components have been added to it.
 	  void RebuildPanel(int startIndex, Component[] addedComponents)
 	  {
 		  Component[] newComponents = new Component[comps.length + addedComponents.length];
 		  
 		  int currentIndex = 0;
 		  
+		  // Add all the components before the new additions.
 		  for(currentIndex = 0; currentIndex < startIndex; currentIndex++)
 			  newComponents[currentIndex] = comps[currentIndex];
 		  
+		  // Add all of the new components.
 		  for(int i = 0; i < addedComponents.length; i++, currentIndex++)
 			  newComponents[currentIndex] = addedComponents[i];
 		  
+		  // Add all of the components following the new additions.
 		  for(int i = startIndex; i < comps.length; i++, currentIndex++)
 			  newComponents[currentIndex] = comps[i];
 		  
+		  // Update the logic frame.
 		  for(int i = 0; i < newComponents.length; i++)
 			  logic.add(newComponents[i]);
 	  }
