@@ -71,7 +71,7 @@ public class JVar extends BaseComponent
 		inputPanel.add(Button);
 		frame=new JFrame(name);
 		frame.setContentPane(inputPanel);
-		frame.setSize(400,150);
+		frame.setSize(800,450);
 		run();
 		
 	}

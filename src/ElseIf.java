@@ -32,6 +32,7 @@ public class ElseIf extends BaseComponent
 		this.setText(name);
 		//String[] ComparatorList={ ">","<", "==","!=",">=","=<"};
 		dropDown=new JComboBox();
+		dropDown.addItem("");
 		dropDown.addItem(">");
 		dropDown.addItem("<");
 		dropDown.addItem("==");
@@ -150,7 +151,15 @@ public class ElseIf extends BaseComponent
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				selectedOperator=(String)dropDown.getSelectedItem();
+				String tempString=(String)dropDown.getSelectedItem();
+				if(tempString=="")
+				{
+					comboLabel.setText("Invalid choice try again!");
+				}
+				else
+				{
+					selectedOperator=tempString;
+				}
 			}
 		};
 		return ComboListen;
