@@ -100,7 +100,7 @@ public class ForLoop extends BaseComponent
 		//System.out.println(startVar);
 		//System.out.println(endVar);
 		String beginning=baseText+startVarString+";i";
-		String middle=startVar+comparisonOperatorString+endVarString+";i";
+		String middle=startVar+comparisonOperatorString+";i";
 		OuterText=beginning+middle+increaseDecrease+"){";
 		this.setText(baseText+startVarString+";i"+comparisonOperatorString+endVarString+";i"+increaseDecrease+")");
 	}
