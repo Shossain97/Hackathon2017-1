@@ -15,22 +15,19 @@ public class RenameVariable extends BaseComponent
 	//private String variableName;
 	private String selectedString;
 	private JLabel reassignLabel;
-	private JComboBox dropDown;
+	private JComboBox<String> dropDown;
 	private JPanel Panel1;
 	private JPanel Panel2;
 
 	public RenameVariable()
 	{
-		String[] tempArray=new String[MainWindow.variables.size()];
-		for(int i =0; i<1+(MainWindow.variables.size());i++)
+		String[] tempArray=new String[MainWindow.variables.size() + 1];
+		tempArray[0] = "";
+		for(int i =1; i<MainWindow.variables.size();i++)
 		{
-			if(i==0)
-			{
-				tempArray[i]="";
-			}
-			tempArray[i]=MainWindow.variables.get(i-1);
+			tempArray[i] = MainWindow.variables.get(i - 1);
 		}
-		dropDown=new JComboBox(tempArray);
+		dropDown=new JComboBox<String>(tempArray);
 		dropDown.addActionListener(comboListener());
 		//varsList.addAll(List,0);
 		inputPanel=new JPanel();
