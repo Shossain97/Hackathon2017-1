@@ -17,7 +17,7 @@ public class JVar extends BaseComponent
 	{
 		name="Declare Variable";
 		this.setText(name);
-		this.setBorder(compBorder);
+		//this.setBorder(compBorder);
 		this.setBackground(Color.BLACK);
 		this.setForeground(borderColor);
 		Button.addActionListener(submitListener());
