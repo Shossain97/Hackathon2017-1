@@ -117,7 +117,8 @@ public class FileBuilder
 				{			
 					fWriter.write(((BaseComponent)currentComponent).getOuterText() + "\n");
 					
-					if(!currentComponent.getClass().getSimpleName().equals("JVar")) needClosing.add(currentComponent);
+					if(!currentComponent.getClass().getSimpleName().equals("JVar")
+							&& !currentComponent.getClass().getSimpleName().equals("VarPrint")) needClosing.add(currentComponent);
 					currentIndex++;
 					skip++;
 					currentComponent = trimmedComponentList.get(currentIndex);
