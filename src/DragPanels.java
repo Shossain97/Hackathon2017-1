@@ -261,10 +261,12 @@ class ListTransferHandler extends TransferHandler
 		  		newComponents = new Component[2];
 		  		newComponents[0] = new JVar();
 		  		newComponents[1] = destination2;
+		  		break;
 		  	case "Print Value":
 		  		newComponents = new Component[2];
 		  		newComponents[0] = new VarPrint();
 		  		newComponents[1] = destination2;
+		  		break;
 		  	default:
 		  		break;
 		  }

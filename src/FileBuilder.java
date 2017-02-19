@@ -1,4 +1,5 @@
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -78,6 +79,10 @@ public class FileBuilder
 			
 			writer.write("\n}");
 			writer.close();
+			
+			java.net.URL url = getClass().getResource("index.html");
+			File htmlFile = new File(url.getPath());
+			Desktop.getDesktop().browse(htmlFile.toURI());
 		}
 		catch(Exception exc)
 		{
@@ -98,7 +103,9 @@ public class FileBuilder
 			}
 			ArrayList<Component> needClosing = new ArrayList<Component>();
 			
-			if(!comp.getClass().getSimpleName().equals("JVar"))
+			String simpleName = comp.getClass().getSimpleName();
+			
+			if(!simpleName.equals("JVar") && !simpleName.equals("VarPrint"))
 			{
 				needClosing.add(comp);
 				currentIndex += 2;
