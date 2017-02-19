@@ -2,11 +2,14 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
 public class MainWindow 
 {	
+	public static ArrayList<String> variables = new ArrayList<String>();
+	
 	public static void main(String[] args) 
 	{
 		UIManager.put("List.font", new Font("Courier", Font.BOLD, 18));

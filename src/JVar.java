@@ -80,6 +80,7 @@ public class JVar extends BaseComponent
 		OuterText=baseText+varName+"="+assignedValue+";";
 		frame.setVisible(false);
 		this.setText("Var "+varName+"="+assignedValue+";");
+		MainWindow.variables.add(varName);
 	}
 	public String getVarName()
 	{
