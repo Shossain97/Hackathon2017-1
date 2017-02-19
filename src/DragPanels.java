@@ -23,7 +23,7 @@ public class DragPanels
 	JLabel conditionalLabel;
 	JLabel varLabel;
 	JList<String> components = new JList<String>(new DefaultListModel<>());
-	String[] componentNames = { "Variable", "If", "Else If", "Else", "For Loop" };
+	String[] componentNames = { "Variable", "If", "Else If", "Else", "For Loop", "Print Value" };
 	
 	JPanel logicPanel;
 	JLabel programLabel;
@@ -232,8 +232,6 @@ class ListTransferHandler extends TransferHandler
 		  		newComponents[2] = destination1;
 		  		newComponents[3] = rightBracket;
 		  		newComponents[4] = destination2;
-		  		comps = logic.getComponents();
-		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "If":
 		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    v--- If Body ---v");
@@ -242,8 +240,6 @@ class ListTransferHandler extends TransferHandler
 		  		newComponents[2] = destination1;
 		  		newComponents[3] = rightBracket;
 		  		newComponents[4] = destination2;
-		  		comps = logic.getComponents();
-		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "Else If":
 		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    v--- Else If Body ---v");
@@ -252,8 +248,6 @@ class ListTransferHandler extends TransferHandler
 		  		newComponents[2] = destination1;
 		  		newComponents[3] = rightBracket;
 		  		newComponents[4] = destination2;
-		  		comps = logic.getComponents();
-		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "Else":
 		  		((DefaultListModel<String>) destination1.getModel()).add(0, "    v--- Else Body ---v");
@@ -262,19 +256,20 @@ class ListTransferHandler extends TransferHandler
 		  		newComponents[2] = destination1;
 		  		newComponents[3] = rightBracket;
 		  		newComponents[4] = destination2;
-		  		comps = logic.getComponents();
-		  		RebuildPanel(startIndex, newComponents);
 		  		break;
 		  	case "Variable":
 		  		newComponents = new Component[2];
 		  		newComponents[0] = new JVar();
 		  		newComponents[1] = destination2;
-		  		comps = logic.getComponents();
-		  		RebuildPanel(startIndex, newComponents);
+		  	case "Print Value":
+		  		newComponents = new Component[2];
+		  		newComponents[0] = new VarPrint();
+		  		newComponents[1] = destination2;
 		  	default:
 		  		break;
 		  }
-		  
+		  comps = logic.getComponents();
+		  RebuildPanel(startIndex, newComponents);
 		  logic.revalidate();
 		  logic.repaint();
 	  }

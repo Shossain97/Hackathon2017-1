@@ -66,6 +66,8 @@ public class FileBuilder
 			
 			FileWriter writer = new FileWriter(jsFile);
 			
+			writer.write("main = function() \n{\n");
+			
 			int elementsToSkip = 0;
 			
 			for(int i = 0; i < trimmedComponentList.size(); i++)
@@ -74,6 +76,7 @@ public class FileBuilder
 				i += elementsToSkip;
 			}
 			
+			writer.write("\n}");
 			writer.close();
 		}
 		catch(Exception exc)
@@ -86,7 +89,6 @@ public class FileBuilder
 	{
 		int skip = 0;
 		int currentIndex = startIndex;
-		boolean foundClosing = false;
 		
 		try
 		{
@@ -104,16 +106,28 @@ public class FileBuilder
 				
 				Component currentComponent = trimmedComponentList.get(currentIndex);
 				
+				
 				while(!currentComponent.getClass().getSimpleName().equals("JLabel"))
 				{			
-					System.out.println(currentComponent.getClass().getSimpleName());
-					
 					fWriter.write(((BaseComponent)currentComponent).getOuterText() + "\n");
 					
 					if(!currentComponent.getClass().getSimpleName().equals("JVar")) needClosing.add(currentComponent);
 					currentIndex++;
 					skip++;
 					currentComponent = trimmedComponentList.get(currentIndex);
+					
+					if(currentComponent.getClass().getSimpleName().equals("JLabel"))
+					{
+						String text = ((JLabel)currentComponent).getText();
+						
+						if(text.equals(" {"))
+						{
+							currentIndex++;
+							skip += 2;
+							currentComponent = trimmedComponentList.get(currentIndex);
+						}
+						else if(text.equals(" }")) break;
+					}
 				}
 				for(int i = 0; i < needClosing.size(); i++)
 					fWriter.write("}\n");

@@ -28,7 +28,7 @@ public class MainWindow
 		
 		mainPanel.add(dragPanels.GetComponentPanel(), BorderLayout.WEST);
 		mainPanel.add(dragPanels.GetLogicPanel(), BorderLayout.CENTER);
-		mainPanel.add(fb.GetButton(), BorderLayout.EAST);
+		mainPanel.add(fb.GetButton(), BorderLayout.SOUTH);
 		
 		frame.getContentPane().add(mainPanel);
 		frame.pack();
