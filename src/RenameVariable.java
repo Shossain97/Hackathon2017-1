@@ -6,38 +6,52 @@ import javax.swing.border.Border;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
+
 public class RenameVariable extends BaseComponent
 {
-	private ArrayList<String> varsList;
+	//private ArrayList<String> varsList;
 	private String renameValue;
-	private String variableName;
-	private JLabel variableNameLabel;
-	private JTextField variableNameText;
-	public RenameVariable(ArrayList<String> List)
+	//private String variableName;
+	private String selectedString;
+	private JLabel reassignLabel;
+	private JComboBox<String> dropDown;
+	private JPanel Panel1;
+	private JPanel Panel2;
+
+	public RenameVariable()
 	{
-		
-		varsList=new ArrayList<String>();
-		for(int i=0;i<List.size();i++)
+		String[] tempArray=new String[MainWindow.variables.size()];
+		for(int i =0; i<1+(MainWindow.variables.size());i++)
 		{
-			varsList.add(List.get(i));
-			System.out.println(varsList.get(i));
+			if(i==0)
+			{
+				tempArray[i]="";
+			}
+			tempArray[i]=MainWindow.variables.get(i-1);
 		}
+		dropDown=new JComboBox(tempArray);
+		dropDown.addActionListener(comboListener());
 		//varsList.addAll(List,0);
-		inputText=new JTextField(5);
 		inputPanel=new JPanel();
-		variableNameLabel=new JLabel();
-		variableNameLabel.setText("Input the name of the variable you are changing");
-		variableNameLabel.setForeground(borderColor);
-		variableNameLabel.setBackground(Color.BLACK);
-		variableNameText=new JTextField(5);
 		inputLabel=new JLabel();
+		inputText=new JTextField(5);
+		Panel1=new JPanel();
+		reassignLabel=new JLabel("Select a variable: ");
+		reassignLabel.setForeground(borderColor);
+		Panel1.setBackground(Color.BLACK);
+		Panel1.add(reassignLabel);
+		Panel1.add(dropDown);
+		Panel2=new JPanel();
+		Panel2.setBackground(Color.BLACK);
 		inputLabel.setText("Input the value you would like to set to: ");
+		Panel2.add(inputLabel);
+		Panel2.add(inputText);
 		inputLabel.setForeground(borderColor);
 		Button.addActionListener(submitListener());
-		inputPanel.add(variableNameLabel);
-		inputPanel.add(variableNameText);
-		inputPanel.add(inputLabel);
-		inputPanel.add(inputText);
+		inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+		inputPanel.add(Panel1);
+		inputPanel.add(Panel2);
 		inputPanel.add(Button);
 		inputPanel.setBackground(Color.BLACK);
 		inputPanel.setBorder(compBorder);
@@ -53,24 +67,37 @@ public class RenameVariable extends BaseComponent
 		{
 			public void actionPerformed(ActionEvent event)
 			{
-				if(varsList.contains(variableNameText.getText()))
-				{
-					renameValue=inputText.getText();
-					variableName=variableNameText.getText();
-					setOuterText();
-				}
-				else
-				{
-					variableNameLabel.setText("Invalid variable name");
-				}
+				renameValue=inputText.getText();
+				setOuterText();
 			}
 		};
 		return submitListen;
 	}
+	private ActionListener comboListener()
+	{
+		ActionListener ComboListen=new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				String tempString=(String)dropDown.getSelectedItem();
+				if(tempString=="")
+				{
+					inputLabel.setText("Invalid choice try again!");
+				}
+				else
+				{
+					selectedString=tempString;
+				}
+			}
+		};
+		return ComboListen;
+		
+	}
 	public void setOuterText()
 	{
-		OuterText=variableName+"="+renameValue+";";
+		OuterText=selectedString+"="+renameValue+";";
 		frame.setVisible(false);
+		this.setText(selectedString+"="+renameValue);
 	}
 	public void run()
 	{
